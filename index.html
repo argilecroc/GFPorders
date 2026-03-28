@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gluten For Punishment | Menu & Ordering</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --accent: #f59e0b;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --panel: #0b1222;
+      --border: #1f2937;
+      --font-head: "Inter Tight", system-ui, -apple-system, sans-serif;
+      --font-body: "Inter", system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 20% 20%, #111827, #0b1222 45%, #0a0f1d),
+                  radial-gradient(circle at 80% 0%, rgba(245,158,11,0.12), transparent 40%),
+                  var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    header {
+      padding: 48px 24px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .brand {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-family: var(--font-head);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: clamp(32px, 5vw, 46px);
+    }
+    .lead { color: var(--muted); max-width: 640px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    .btn {
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+    }
+    .btn.primary { background: linear-gradient(135deg, #f59e0b, #f97316); color: #0a0a0a; border: none; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.25); border-color: #2a3548; }
+    main { max-width: 1080px; margin: 0 auto; padding: 0 24px 64px; display: grid; gap: 32px; }
+    section { background: rgba(17,24,39,0.7); border: 1px solid var(--border); border-radius: 18px; padding: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.25); }
+    h2 { margin: 0 0 12px; font-family: var(--font-head); letter-spacing: -0.01em; }
+    .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(245,158,11,0.15); color: #fcd34d; font-size: 13px; margin-right: 8px; }
+    .steps { display: grid; gap: 10px; }
+    .step { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px; }
+    .menu-grid { display: grid; gap: 16px; }
+    .category { border: 1px solid var(--border); border-radius: 14px; padding: 14px; background: var(--panel); }
+    .category h3 { margin: 0 0 8px; font-family: var(--font-head); }
+    .item { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .item:last-child { border-bottom: none; }
+    .item .name { font-weight: 700; }
+    .item .unit { color: var(--muted); font-size: 14px; }
+    .item .price { font-weight: 700; color: #fcd34d; }
+    .notes { color: var(--muted); font-size: 14px; margin-top: 4px; }
+    .faq { display: grid; gap: 10px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--panel); }
+    footer { color: var(--muted); text-align: center; padding: 24px; font-size: 14px; }
+    @media (max-width: 640px) {
+      .item { flex-direction: column; align-items: flex-start; }
+      .cta-row { width: 100%; }
+      .btn { width: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div>
+        <h1>Gluten For Punishment</h1>
+        <div class="lead">Small-batch cottage bakery. Pickup or delivery within ~20 minutes of Austin Bluffs &amp; Academy. 48-hour notice on all orders. Deposit required on custom orders and orders over $50.</div>
+        <div class="cta-row">
+          <a class="btn primary" id="order-btn" href="https://forms.gle/kGhKH1TPKtXiFV4M9" target="_blank" rel="noopener">Order Now</a>
+          <a class="btn" href="https://www.instagram.com/Gluten4Punishment.co" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div class="pill">Colorado Springs</div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>How to Order</h2>
+      <div class="steps">
+        <div class="step">1) Browse the menu below.</div>
+        <div class="step">2) Submit the order form (48-hour notice). We’ll confirm pickup/delivery window.</div>
+        <div class="step">3) Pay deposit if custom or over $50; settle the balance at handoff.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Menu</h2>
+      <div id="menu" class="menu-grid">Loading menu…</div>
+    </section>
+
+    <section>
+      <h2>FAQ</h2>
+      <div class="faq">
+        <div class="faq-item"><strong>Lead time:</strong> 48-hour notice. We’ll confirm exact pickup/delivery time.</div>
+        <div class="faq-item"><strong>Pickup & delivery:</strong> Within ~20 minutes of Austin Bluffs &amp; Academy.</div>
+        <div class="faq-item"><strong>Deposits:</strong> Required on all custom orders and orders over $50.</div>
+        <div class="faq-item"><strong>Allergens:</strong> Made in a home kitchen; common allergens include wheat, dairy, eggs, nuts.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Gluten For Punishment — Colorado Springs</footer>
+
+  <script>
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/1MWFZPYVNo-rZjZAIAmy4oIHTqetraa6LVh9ixvHHUfE/export?format=csv&gid=449861824";
+
+    function csvToRows(text) {
+      return text.trim().split(/\r?\n/).map(r => r.split(/,(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)/).map(c => c.replace(/^\"|\"$/g, "").trim()));
+    }
+
+    function renderMenu(rows) {
+      const header = rows.shift(); // remove header
+      const [catIdx, itemIdx, unitIdx, priceIdx, notesIdx] = header.map((h, i) => [h.toLowerCase(), i]).reduce((acc, [h,i]) => {
+        acc[h] = i; return acc;
+      }, {});
+
+      const byCat = {};
+      rows.forEach(r => {
+        const cat = r[catIdx] || "Other";
+        if (!byCat[cat]) byCat[cat] = [];
+        byCat[cat].push({
+          name: r[itemIdx],
+          unit: r[unitIdx],
+          price: r[priceIdx],
+          notes: r[notesIdx]
+        });
+      });
+
+      const menuEl = document.getElementById("menu");
+      menuEl.innerHTML = "";
+      Object.keys(byCat).sort().forEach(cat => {
+        const block = document.createElement("div");
+        block.className = "category";
+        const h = document.createElement("h3");
+        h.textContent = cat;
+        block.appendChild(h);
+        byCat[cat].forEach(item => {
+          const row = document.createElement("div");
+          row.className = "item";
+          const left = document.createElement("div");
+          left.innerHTML = `<div class="name">${item.name}</div>${item.unit ? `<div class="unit">${item.unit}</div>` : ""}`;
+          const right = document.createElement("div");
+          right.className = "price";
+          right.textContent = item.price || "";
+          row.append(left, right);
+          if (item.notes) {
+            const n = document.createElement("div");
+            n.className = "notes";
+            n.textContent = item.notes;
+            left.appendChild(n);
+          }
+          block.appendChild(row);
+        });
+        menuEl.appendChild(block);
+      });
+    }
+
+    async function loadMenu() {
+      try {
+        const res = await fetch(CSV_URL, { cache: "no-store" });
+        const text = await res.text();
+        const rows = csvToRows(text);
+        renderMenu(rows);
+      } catch (err) {
+        document.getElementById("menu").textContent = "Could not load menu. Check sharing on the public menu sheet.";
+        console.error(err);
+      }
+    }
+
+    loadMenu();
+  </script>
+</body>
+</html>
