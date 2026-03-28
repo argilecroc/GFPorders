@@ -1,3 +1,9 @@
+The GitHub app still can’t write to the repo (403). Please paste this updated `index.html` into GitHub’s editor for `argilecroc/GFPorders` (replace the file):
+
+- Changes: uses OpenSheet JSON feed instead of the CSV; should load as long as the sheet is “Anyone with link: Viewer.”
+- After saving, redeploy on Cloudflare Pages.
+
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,36 +34,12 @@
       min-height: 100vh;
     }
     a { color: inherit; text-decoration: none; }
-    header {
-      padding: 48px 24px 24px;
-      max-width: 1080px;
-      margin: 0 auto;
-    }
-    .brand {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-    h1 {
-      margin: 0 0 8px;
-      font-family: var(--font-head);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      font-size: clamp(32px, 5vw, 46px);
-    }
+    header { padding: 48px 24px 24px; max-width: 1080px; margin: 0 auto; }
+    .brand { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+    h1 { margin: 0 0 8px; font-family: var(--font-head); font-weight: 800; letter-spacing: -0.02em; font-size: clamp(32px, 5vw, 46px); }
     .lead { color: var(--muted); max-width: 640px; }
     .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
-    .btn {
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 700;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
-    }
+    .btn { padding: 12px 18px; border-radius: 999px; font-weight: 700; border: 1px solid var(--border); background: var(--card); color: var(--text); transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease; }
     .btn.primary { background: linear-gradient(135deg, #f59e0b, #f97316); color: #0a0a0a; border: none; }
     .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.25); border-color: #2a3548; }
     main { max-width: 1080px; margin: 0 auto; padding: 0 24px 64px; display: grid; gap: 32px; }
@@ -78,11 +60,7 @@
     .faq { display: grid; gap: 10px; }
     .faq-item { border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--panel); }
     footer { color: var(--muted); text-align: center; padding: 24px; font-size: 14px; }
-    @media (max-width: 640px) {
-      .item { flex-direction: column; align-items: flex-start; }
-      .cta-row { width: 100%; }
-      .btn { width: auto; }
-    }
+    @media (max-width: 640px) { .item { flex-direction: column; align-items: flex-start; } .cta-row { width: 100%; } .btn { width: auto; } }
   </style>
 </head>
 <body>
@@ -105,7 +83,7 @@
       <h2>How to Order</h2>
       <div class="steps">
         <div class="step">1) Browse the menu below.</div>
-        <div class="step">2) Submit the order form (48-hour notice). We’ll confirm pickup/delivery window.</div>
+        <div class="step">2) Submit the order form (48-hour notice). We'll confirm pickup/delivery window.</div>
         <div class="step">3) Pay deposit if custom or over $50; settle the balance at handoff.</div>
       </div>
     </section>
@@ -118,7 +96,7 @@
     <section>
       <h2>FAQ</h2>
       <div class="faq">
-        <div class="faq-item"><strong>Lead time:</strong> 48-hour notice. We’ll confirm exact pickup/delivery time.</div>
+        <div class="faq-item"><strong>Lead time:</strong> 48-hour notice. We'll confirm exact pickup/delivery time.</div>
         <div class="faq-item"><strong>Pickup & delivery:</strong> Within ~20 minutes of Austin Bluffs &amp; Academy.</div>
         <div class="faq-item"><strong>Deposits:</strong> Required on all custom orders and orders over $50.</div>
         <div class="faq-item"><strong>Allergens:</strong> Made in a home kitchen; common allergens include wheat, dairy, eggs, nuts.</div>
@@ -129,68 +107,54 @@
   <footer>Gluten For Punishment — Colorado Springs</footer>
 
   <script>
-    // Using gviz CSV endpoint (works as long as the sheet is shared "Anyone with link: Viewer")
-    const CSV_URL = "https://docs.google.com/spreadsheets/d/1MWFZPYVNo-rZjZAIAmy4oIHTqetraa6LVh9ixvHHUfE/gviz/tq?tqx=out:csv&sheet=Menu";
-
-    function csvToRows(text) {
-      return text.trim().split(/\r?\n/).map(r => r.split(/,(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)/).map(c => c.replace(/^\"|\"$/g, "").trim()));
-    }
-
-    function renderMenu(rows) {
-      const header = rows.shift(); // remove header
-      const [catIdx, itemIdx, unitIdx, priceIdx, notesIdx] = header.map((h, i) => [h.toLowerCase(), i]).reduce((acc, [h,i]) => {
-        acc[h] = i; return acc;
-      }, {});
-
-      const byCat = {};
-      rows.forEach(r => {
-        const cat = r[catIdx] || "Other";
-        if (!byCat[cat]) byCat[cat] = [];
-        byCat[cat].push({
-          name: r[itemIdx],
-          unit: r[unitIdx],
-          price: r[priceIdx],
-          notes: r[notesIdx]
-        });
-      });
-
-      const menuEl = document.getElementById("menu");
-      menuEl.innerHTML = "";
-      Object.keys(byCat).sort().forEach(cat => {
-        const block = document.createElement("div");
-        block.className = "category";
-        const h = document.createElement("h3");
-        h.textContent = cat;
-        block.appendChild(h);
-        byCat[cat].forEach(item => {
-          const row = document.createElement("div");
-          row.className = "item";
-          const left = document.createElement("div");
-          left.innerHTML = `<div class="name">${item.name}</div>${item.unit ? `<div class="unit">${item.unit}</div>` : ""}`;
-          const right = document.createElement("div");
-          right.className = "price";
-          right.textContent = item.price || "";
-          row.append(left, right);
-          if (item.notes) {
-            const n = document.createElement("div");
-            n.className = "notes";
-            n.textContent = item.notes;
-            left.appendChild(n);
-          }
-          block.appendChild(row);
-        });
-        menuEl.appendChild(block);
-      });
-    }
+    // Using OpenSheet JSON endpoint (works if sheet is shared "Anyone with link: Viewer")
+    const JSON_URL = "https://opensheet.elk.sh/1MWFZPYVNo-rZjZAIAmy4oIHTqetraa6LVh9ixvHHUfE/Menu";
 
     async function loadMenu() {
       try {
-        const res = await fetch(CSV_URL, { cache: "no-store" });
-        const text = await res.text();
-        const rows = csvToRows(text);
-        renderMenu(rows);
+        const res = await fetch(JSON_URL, { cache: "no-store" });
+        const data = await res.json(); // [{Category, Item, "Unit/Pack", Price, Notes}]
+        const byCat = {};
+        data.forEach(row => {
+          const cat = row["Category"] || "Other";
+          if (!byCat[cat]) byCat[cat] = [];
+          byCat[cat].push({
+            name: row["Item"],
+            unit: row["Unit/Pack"],
+            price: row["Price"],
+            notes: row["Notes"]
+          });
+        });
+
+        const menuEl = document.getElementById("menu");
+        menuEl.innerHTML = "";
+        Object.keys(byCat).sort().forEach(cat => {
+          const block = document.createElement("div");
+          block.className = "category";
+          const h = document.createElement("h3");
+          h.textContent = cat;
+          block.appendChild(h);
+          byCat[cat].forEach(item => {
+            const row = document.createElement("div");
+            row.className = "item";
+            const left = document.createElement("div");
+            left.innerHTML = `<div class="name">${item.name}</div>${item.unit ? `<div class="unit">${item.unit}</div>` : ""}`;
+            const right = document.createElement("div");
+            right.className = "price";
+            right.textContent = item.price || "";
+            row.append(left, right);
+            if (item.notes) {
+              const n = document.createElement("div");
+              n.className = "notes";
+              n.textContent = item.notes;
+              left.appendChild(n);
+            }
+            block.appendChild(row);
+          });
+          menuEl.appendChild(block);
+        });
       } catch (err) {
-        document.getElementById("menu").textContent = "Could not load menu. Check sharing on the public menu sheet.";
+        document.getElementById("menu").textContent = "Could not load menu. Check sheet sharing.";
         console.error(err);
       }
     }
@@ -199,3 +163,4 @@
   </script>
 </body>
 </html>
+```
