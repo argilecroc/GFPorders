@@ -129,7 +129,8 @@
   <footer>Gluten For Punishment — Colorado Springs</footer>
 
   <script>
-    const CSV_URL = "https://docs.google.com/spreadsheets/d/1MWFZPYVNo-rZjZAIAmy4oIHTqetraa6LVh9ixvHHUfE/export?format=csv&gid=449861824";
+    // Using gviz CSV endpoint (works as long as the sheet is shared "Anyone with link: Viewer")
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/1MWFZPYVNo-rZjZAIAmy4oIHTqetraa6LVh9ixvHHUfE/gviz/tq?tqx=out:csv&sheet=Menu";
 
     function csvToRows(text) {
       return text.trim().split(/\r?\n/).map(r => r.split(/,(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)/).map(c => c.replace(/^\"|\"$/g, "").trim()));
