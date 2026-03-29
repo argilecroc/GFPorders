@@ -42,7 +42,7 @@
       box-shadow: 0 16px 50px rgba(0,0,0,0.35);
     }
     .brand { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-    .brand img { width: 120px; height: auto; border-radius: 12px; background: #0b0a0f; padding: 6px; box-shadow: 0 12px 40px rgba(0,0,0,0.35); object-fit: contain; }
+    .logo-mark { width: 120px; height: 120px; border-radius: 12px; background: #0b0a0f; padding: 8px; box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
     h1 { margin: 0 0 8px; font-family: var(--font-head); font-weight: 800; letter-spacing: -0.02em; font-size: clamp(32px, 5vw, 46px); color: #0b0a0f; }
     .lead { color: #2f260d; max-width: 720px; font-weight: 600; }
     .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
@@ -76,7 +76,10 @@
   <header>
     <div class="brand-card">
       <div class="brand">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Crect width='220' height='220' rx='24' fill='%230b0a0f'/%3E%3Cpath d='M46 160V60h54c18 0 30 10 30 25 0 10-5 18-13 22 12 3 20 12 20 25 0 20-15 28-38 28H46Zm30-61h21c7 0 11-4 11-10s-4-9-11-9H76v19Zm0 38h22c8 0 13-4 13-11s-5-10-13-10H76v21Zm78 23V60h22v100h-22Z' fill='%23f6c344'/%3E%3C/svg%3E" alt="Gluten For Punishment" loading="lazy">
+        <svg class="logo-mark" viewBox="0 0 220 220" role="img" aria-label="Gluten For Punishment logo">
+          <rect width="220" height="220" rx="24" fill="#0b0a0f"/>
+          <path d="M40 160V60h60q20 0 32 10.5T144 96q0 12-6.5 20T122 125q11 2 17.5 10.5T146 154q0 14-11 22t-30 8H40Zm32-62h24q8 0 12-4.5t4-11.5q0-6-4-10t-12-4H72v30Zm0 40h26q9 0 14-4.5t5-12.5q0-7-5-11.5T98 105H72v33Zm92 22V60h24v100h-24Z" fill="#f6c344"/>
+        </svg>
         <div>
           <h1>Gluten For Punishment</h1>
           <div class="lead">Luxury for the people. Small-batch cottage bakery serving Colorado Springs.</div>
