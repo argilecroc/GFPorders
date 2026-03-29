@@ -31,13 +31,21 @@
     }
     a { color: inherit; text-decoration: none; }
     header { padding: 48px 24px 24px; max-width: 1080px; margin: 0 auto; }
-    .brand { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
-    .brand img { width: 84px; height: auto; border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.35); background: #0b0a0f; }
-    h1 { margin: 0 0 8px; font-family: var(--font-head); font-weight: 800; letter-spacing: -0.02em; font-size: clamp(32px, 5vw, 46px); }
-    .lead { color: var(--muted); max-width: 720px; }
+    .brand-card {
+      background: linear-gradient(135deg, rgba(246,195,68,0.92), rgba(242,156,31,0.92));
+      color: #0b0a0f;
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.35);
+    }
+    .brand { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+    .brand img { width: 110px; height: auto; border-radius: 12px; background: #0b0a0f; padding: 6px; box-shadow: 0 12px 40px rgba(0,0,0,0.35); object-fit: contain; }
+    h1 { margin: 0 0 8px; font-family: var(--font-head); font-weight: 800; letter-spacing: -0.02em; font-size: clamp(32px, 5vw, 46px); color: #0b0a0f; }
+    .lead { color: #2f260d; max-width: 720px; font-weight: 600; }
     .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
     .btn { padding: 12px 18px; border-radius: 999px; font-weight: 700; border: 1px solid var(--border); background: var(--card); color: var(--text); transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease; }
-    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0a0f; border: none; }
+    .btn.primary { background: linear-gradient(135deg, #0b0a0f, #1b1a22); color: #f6c344; border: 1px solid #0b0a0f; }
     .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.25); border-color: #323341; }
     main { max-width: 1080px; margin: 0 auto; padding: 0 24px 64px; display: grid; gap: 32px; }
     section { background: rgba(21,20,29,0.82); border: 1px solid var(--border); border-radius: 18px; padding: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.25); }
@@ -64,17 +72,19 @@
 </head>
 <body>
   <header>
-    <div class="brand">
-      <img src="assets/logo.png" alt="Gluten For Punishment logo" loading="lazy">
-      <div>
-        <h1>Gluten For Punishment</h1>
-        <div class="lead">Luxury for the people: grandma's kitchen, slightly fancied up. Small-batch cottage bakery serving Colorado Springs. 48-hour notice on all orders. Deposit required on custom orders and orders over $50.</div>
-        <div class="cta-row">
-          <a class="btn primary" id="order-btn" href="https://forms.gle/kGhKH1TPKtXiFV4M9" target="_blank" rel="noopener">Order Now</a>
-          <a class="btn" href="https://www.instagram.com/Gluten4Punishment.co" target="_blank" rel="noopener">Instagram</a>
+    <div class="brand-card">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Gluten For Punishment logo" loading="lazy">
+        <div>
+          <h1>Gluten For Punishment</h1>
+          <div class="lead">Luxury for the people. Small-batch cottage bakery serving Colorado Springs.</div>
+          <div class="cta-row">
+            <a class="btn primary" id="order-btn" href="https://forms.gle/kGhKH1TPKtXiFV4M9" target="_blank" rel="noopener">Order Now</a>
+            <a class="btn" href="https://www.instagram.com/Gluten4Punishment.co" target="_blank" rel="noopener">Instagram</a>
+          </div>
         </div>
+        <div class="pill">Colorado Springs</div>
       </div>
-      <div class="pill">Colorado Springs</div>
     </div>
   </header>
 
