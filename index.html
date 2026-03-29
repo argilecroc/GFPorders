@@ -1,228 +1,252 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gluten For Punishment | Menu & Ordering</title>
-  <style>
-    :root {
-      --bg: #f6f0e8;
-      --panel: #fffaf4;
-      --card: #fff5e6;
-      --border: #e4d5c2;
-      --accent: #d99127;
-      --accent-2: #c77911;
-      --text: #2c2010;
-      --muted: #6d5a45;
-      --pill-bg: #fdf3e3;
-      --pill-text: #8a5b0c;
-      --font-head: "Inter Tight", system-ui, -apple-system, sans-serif;
-      --font-body: "Inter", system-ui, -apple-system, sans-serif;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 18% 12%, rgba(217,145,39,0.12), transparent 30%),
-        radial-gradient(circle at 80% 0%, rgba(255,195,122,0.12), transparent 28%),
-        linear-gradient(135deg, #f9f4ec 0%, #f1e5d6 60%, #f7efe3 100%);
-      color: var(--text);
-      font-family: var(--font-body);
-      line-height: 1.6;
-      padding: 0 0 56px;
-    }
-    a { color: inherit; text-decoration: none; }
-    header { max-width: 1180px; margin: 0 auto; padding: 40px 20px 12px; }
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-      gap: 22px;
-      background: linear-gradient(135deg, #fff8ee, #fcefdc);
-      border: 1px solid #f0dfc6;
-      border-radius: 24px;
-      padding: 26px 26px 22px;
-      box-shadow: 0 18px 50px rgba(129, 94, 42, 0.18);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 72% 12%, rgba(255, 202, 133, 0.25), transparent 32%);
-      pointer-events: none;
-    }
-    .hero-left { position: relative; z-index: 1; display: grid; gap: 14px; }
-    h1 { margin: 0; font-family: var(--font-head); font-weight: 800; letter-spacing: -0.02em; font-size: clamp(34px, 5vw, 50px); color: #1f1407; }
-    .lead { color: #4a351f; max-width: 760px; font-weight: 600; }
-    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
-    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: var(--pill-bg); color: var(--pill-text); border: 1px solid #edd9bd; font-size: 13px; font-weight: 700; letter-spacing: 0.01em; box-shadow: 0 6px 18px rgba(0,0,0,0.05); }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
-    .btn { padding: 12px 18px; border-radius: 999px; font-weight: 750; border: 1px solid #d8c6ad; background: #fff; color: #2c2010; transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease; box-shadow: 0 8px 22px rgba(0,0,0,0.06); }
-    .btn.primary { background: linear-gradient(135deg, #d99127, #c77911); color: #fffaf3; border: 1px solid #c77911; box-shadow: 0 12px 30px rgba(199, 121, 17, 0.28); }
-    .btn:hover { transform: translateY(-2px); border-color: #b46a0c; box-shadow: 0 14px 34px rgba(0,0,0,0.12); }
-    .hero-card {
-      position: relative;
-      z-index: 1;
-      background: #fffefb;
-      border: 1px solid #e9d9c4;
-      border-radius: 18px;
-      padding: 18px;
-      display: grid;
-      place-items: center;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 16px 40px rgba(0,0,0,0.12);
-    }
-    .logo { width: 210px; max-width: 100%; height: auto; border-radius: 14px; background: #fffaf1; padding: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 16px 44px rgba(0,0,0,0.12); }
-
-    main { max-width: 1180px; margin: 0 auto; padding: 0 20px 64px; display: grid; gap: 26px; }
-    section { background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 18px 18px 14px; box-shadow: 0 14px 38px rgba(0,0,0,0.08); }
-    h2 { margin: 0 0 12px; font-family: var(--font-head); letter-spacing: -0.01em; font-size: 22px; color: #1f1407; }
-    .steps { display: grid; gap: 10px; }
-    .step { background: #fffdf9; border: 1px solid #eadac6; border-radius: 14px; padding: 12px 14px; color: var(--muted); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
-    .step strong { color: #3a2714; }
-
-    .about { background: #fffdf9; border: 1px solid #eadac6; border-radius: 14px; padding: 14px; color: var(--muted); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
-    .about strong { color: #2c2010; }
-
-    .menu-grid { display: grid; gap: 16px; }
-    .category { border: 1px solid #eadac6; border-radius: 14px; padding: 14px; background: #fffdf9; box-shadow: 0 10px 26px rgba(0,0,0,0.07); }
-    .category h3 { margin: 0 0 8px; font-family: var(--font-head); color: #2c2010; }
-    .item { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid #efdfcb; }
-    .item:last-child { border-bottom: none; }
-    .item .name { font-weight: 700; color: #3a2714; }
-    .item .unit { color: var(--muted); font-size: 14px; }
-    .item .price { font-weight: 800; color: #c77911; }
-    .notes { color: var(--muted); font-size: 14px; margin-top: 4px; }
-
-    .faq { display: grid; gap: 10px; }
-    .faq-item { border: 1px solid #eadac6; border-radius: 12px; padding: 12px; background: #fffdf9; color: var(--muted); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
-    .faq-item strong { color: #2c2010; }
-
-    footer { color: var(--muted); text-align: center; padding: 20px; font-size: 14px; }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-card { order: -1; }
-      .logo { width: 180px; }
-    }
-    @media (max-width: 540px) {
-      .cta-row { width: 100%; }
-      .btn { width: auto; }
-      .chips { gap: 8px; }
-      .logo { width: 160px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gluten For Punishment | Colorado Springs Cottage Bakery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brandBrown: '#4A3424',
+              brandGold: '#D4983E',
+              brandOat: '#F4EFE6',
+              brandPaper: '#EBE5D9',
+              brandTeal: '#487A84',
+              brandPine: '#275A37',
+            },
+            fontFamily: {
+              sans: ['Inter','sans-serif'],
+              serif: ['Crimson Pro','serif'],
+            },
+            boxShadow: {
+              brutal: '4px 4px 0px 0px #4A3424',
+              'brutal-gold': '4px 4px 0px 0px #D4983E',
+              'brutal-hover': '2px 2px 0px 0px #4A3424',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+      ::-webkit-scrollbar { width: 10px; }
+      ::-webkit-scrollbar-track { background: #F4EFE6; }
+      ::-webkit-scrollbar-thumb { background: #4A3424; border-radius: 5px; border: 2px solid #F4EFE6; }
+      .brutal-card { transition: all 0.2s ease; }
+      .brutal-card:hover { transform: translate(2px,2px); box-shadow: none !important; }
+    </style>
 </head>
-<body>
-  <header>
-    <div class="hero">
-      <div class="hero-left">
-        <div class="chips">
-          <span class="pill">Colorado Springs</span>
-          <span class="pill">48-hour notice</span>
-          <span class="pill">Deposit on custom & $50+</span>
-        </div>
-        <h1>Gluten For Punishment</h1>
-        <div class="lead">Luxury for the people. Small-batch cottage bakery serving Colorado Springs. Comfort bakes, done slow and from scratch.</div>
-        <div class="cta-row">
-          <a class="btn primary" href="https://forms.gle/kGhKH1TPKtXiFV4M9" target="_blank" rel="noopener">Order Now</a>
-          <a class="btn" href="https://www.instagram.com/Gluten4Punishment.co" target="_blank" rel="noopener">Instagram</a>
-        </div>
-      </div>
-      <div class="hero-card">
-        <img class="logo" src="GFPweblogo.png" alt="Gluten For Punishment logo">
+<body class="bg-brandOat text-brandBrown font-sans antialiased">
+  <nav class="bg-brandPaper border-b-2 border-brandBrown sticky top-0 z-50 h-20 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="GFPweblogo.png" alt="GFP Logo" class="h-14 w-14 rounded-full border-2 border-brandBrown bg-white object-contain p-1 group-hover:rotate-6 transition-transform" onerror="this.style.display='none'">
+        <span class="font-serif font-bold text-xl uppercase tracking-tighter hidden sm:block">GFP.</span>
+      </a>
+      <div class="flex gap-4 sm:gap-8 font-bold uppercase tracking-tighter text-sm items-center">
+        <a href="#menu" class="hover:text-brandGold transition-colors">Menu</a>
+        <a href="#about" class="hover:text-brandGold transition-colors">About</a>
+        <a href="https://forms.gle/kGhKH1TPKtXiFV4M9" target="_blank" class="bg-brandBrown text-white px-5 py-2 border-2 border-brandBrown shadow-[2px_2px_0px_0px_#D4983E] hover:bg-brandGold hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Order</a>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <main>
-    <section>
-      <h2>How to Order</h2>
-      <div class="steps">
-        <div class="step"><strong>1) Pick your items.</strong> Browse the menu below and note quantities.</div>
-        <div class="step"><strong>2) Submit the form.</strong> 48-hour notice; we’ll confirm pickup or delivery within ~20 minutes of Austin Bluffs & Academy.</div>
-        <div class="step"><strong>3) Confirm & pay.</strong> Deposits required on custom orders and orders over $50; balance due at handoff.</div>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 space-y-28">
+    <section class="text-center space-y-10 max-w-3xl mx-auto flex flex-col items-center">
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-brandGold/10 rounded-full blur-2xl group-hover:bg-brandGold/20 transition-all"></div>
+        <img src="GFPweblogo.png" alt="Gluten For Punishment" class="relative w-64 md:w-80 rounded-full border-4 border-brandBrown bg-white p-2 shadow-brutal transition-transform duration-700 hover:scale-[1.02]">
+      </div>
+      <div class="space-y-6">
+        <h1 class="text-3xl md:text-5xl font-serif font-bold leading-tight">Luxury for the people. Elevated comfort food that doesn't take itself too seriously.</h1>
+        <p class="text-xl md:text-2xl text-stone-600 font-serif italic">Baked from scratch in Colorado Springs—without the weird stuff.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row justify-center gap-6 w-full sm:w-auto">
+        <a href="https://forms.gle/kGhKH1TPKtXiFV4M9" target="_blank" class="px-10 py-5 bg-brandGold text-white font-serif font-bold text-xl border-2 border-brandBrown shadow-brutal hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all flex items-center justify-center gap-2">Start Your Order
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="https://www.instagram.com/Gluten4Punishment.co" target="_blank" class="px-10 py-5 bg-brandPaper text-brandBrown font-serif confirmed text-xl border-2 border-brandBrown shadow-brutal hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          Instagram
+        </a>
       </div>
     </section>
 
     <section>
-      <h2>About the Bakehouse</h2>
-      <div class="about">
-        <strong>Mission:</strong> Luxury for the people. We’re a Colorado Springs cottage bakery making comfort bakes the slow, from-scratch way—no weird stuff, just better ingredients and recipes that actually taste like home. Small batches, steady hands, dependable pickup or delivery. Scratch-made, not shelf-made.
+      <div class="flex items-center gap-3 mb-8">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4983E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <h2 class="text-3xl font-serif font-bold">How to Order</h2>
+      </div>
+      <div class="bg-brandPaper p-8 md:p-12 border-2 border-brandBrown shadow-brutal">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0">
+          <div class="flex flex-col gap-4 md:border-r-2 md:border-brandBrown/10 md:pr-10">
+            <div class="font-serif font-bold text-brandGold text-5xl">01</div>
+            <h3 class="text-xl font-serif font-bold uppercase tracking-tighter">Browse</h3>
+            <p class="font-bold leading-snug text-stone-600">Peruse our current offerings below.</p>
+          </div>
+          <div class="flex flex-col gap-4 md:border-r-2 md:border-brandBrown/10 md:px-10 pt-8 md:pt-0 border-t-2 md:border-t-0 border-brandBrown/10">
+            <div class="font-serif font-bold text-brandTeal text-5xl">02</div>
+            <h3 class="text-xl font-serif font-bold uppercase tracking-tighter">Request</h3>
+            <p class="font-bold leading-snug text-stone-600">Submit the form with 48-hour notice. I'll confirm the window.</p>
+          </div>
+          <div class="flex flex-col gap-4 md:pl-10 pt-8 md:pt-0 border-t-2 md:border-t-0 border-brandBrown/10">
+            <div class="font-serif font-bold text-brandPine text-5xl">03</div>
+            <h3 class="text-xl font-serif font-bold uppercase tracking-tighter">Enjoy</h3>
+            <p class="font-bold leading-snug text-stone-600">Pay deposit to secure, settle at handoff, and enjoy.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h2>Menu</h2>
-      <div id="menu" class="menu-grid">Loading menu…</div>
+    <section id="menu" class="scroll-mt-24">
+      <div class="flex items-center gap-3 mb-8">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4983E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <h2 class="text-3xl font-serif font-bold">Current Offerings</h2>
+      </div>
+      <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10"></div>
+      <div class="mt-12 text-center">
+        <p class="font-serif italic text-stone-500 text-lg">...and more treats, Bundt cakes, and Bundle boxes available upon request.</p>
+      </div>
     </section>
 
-    <section>
-      <h2>FAQ</h2>
-      <div class="faq">
-        <div class="faq-item"><strong>Lead time:</strong> 48-hour notice. We’ll confirm exact pickup/delivery time.</div>
-        <div class="faq-item"><strong>Pickup & delivery:</strong> Within ~20 minutes of Austin Bluffs & Academy.</div>
-        <div class="faq-item"><strong>Deposits:</strong> Required on all custom orders and orders over $50.</div>
-        <div class="faq-item"><strong>Realtor / gifts:</strong> Welcome Home and Comfort boxes available; ask for a sample drop.</div>
-        <div class="faq-item"><strong>Allergens:</strong> Home kitchen that handles wheat (gluten), dairy, eggs, and tree nuts.</div>
+    <section id="about" class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center scroll-mt-24">
+      <div class="space-y-8">
+        <div class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4983E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          <h2 class="text-3xl font-serif font-bold">About the Bakehouse</h2>
+        </div>
+        <div class="bg-brandPaper p-8 md:p-10 border-2 border-brandBrown shadow-brutal space-y-6 font-bold text-lg leading-relaxed text-stone-600">
+          <p>I started baking with my grandma as a kid—the kind of baking where the kitchen smells like Sunday and nobody's in a hurry.</p>
+          <p>Years later, a back injury ended my career. I was hurting and feeling pretty useless, until I found my way back to the kitchen. What started as a way to show up for my family turned into Gluten For Punishment.</p>
+          <p>Now I bake from my home kitchen in Colorado Springs. Real ingredients. No shortcuts. Because I believe this: good food should feel like something. Comfort and nostalgia, made from scratch, made for everyone.</p>
+          <p class="font-serif font-bold text-brandGold text-2xl pt-6 border-t-2 border-brandBrown/10 italic">Scratch-made, not shelf-made.</p>
+        </div>
       </div>
+      <div class="relative group">
+        <div class="aspect-square bg-white p-4 border-2 border-brandBrown shadow-brutal rotate-1 group-hover:rotate-0 transition-transform flex flex-col items-center justify-center gap-4 text-stone-300 text-center px-10">
+          <svg class="w-32 h-32 text-brandPaper" viewBox="0 0 24 24" fill="currentColor"><path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z" /></svg>
+          <span class="font-serif font-bold text-sm uppercase tracking-widest text-brandBrown/30">Homemade with heart in Colorado Springs</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="max-w-3xl mx-auto pb-10">
+      <div class="flex items-center gap-3 mb-8">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4983E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        <h2 class="text-3xl font-serif font-bold">Common Questions</h2>
+      </div>
+      <div class="space-y-4" id="faq-container"></div>
     </section>
   </main>
 
-  <footer>Gluten For Punishment — Colorado Springs</footer>
+  <footer class="mt-40 bg-brandBrown text-brandOat py-20 border-t-4 border-brandGold text-center">
+    <div class="max-w-4xl mx-auto px-4 space-y-10">
+      <div class="flex justify-center">
+        <img src="GFPweblogo.png" alt="GFP Logo" class="h-24 w-24 rounded-full border-2 border-brandGold bg-white object-contain p-1 shadow-xl">
+      </div>
+      <div class="space-y-4">
+        <h2 class="font-serif font-bold text-3xl text-brandGold uppercase tracking-tighter">Gluten For Punishment</h2>
+        <p class="max-w-md mx-auto font-bold opacity-70">Small-batch cottage bakery bringing scratch-made comfort bakes to Colorado Springs.</p>
+      </div>
+      <div class="flex justify-center gap-4">
+        <a href="https://www.instagram.com/Gluten4Punishment.co" target="_blank" class="p-4 rounded-full border-2 border-brandGold hover:bg-brandGold hover:text-white transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </a>
+      </div>
+      <div class="pt-10 border-t border-white/10 text-[10px] font-black uppercase tracking-[0.4em] opacity-30">© 2026 Gluten For Punishment • Real Food • No Weird Stuff</div>
+    </div>
+  </footer>
 
   <script>
     const JSON_URL = "https://opensheet.elk.sh/1MWFZPYVNo-rZjZAIAmy4oIHTqetraa6LVh9ixvHHUfE/Menu";
+    const menuGrid = document.getElementById('menu-grid');
+    const colorPills = ['brandGold','brandTeal','brandPine'];
+
+    function createCard(item, idx) {
+      const pillColor = colorPills[idx % colorPills.length];
+      const priceBadge = item.price ? `${item.price}` : '';
+      const unit = item.unit ? item.unit : '';
+      const notes = item.notes ? item.notes : '';
+      const cat = item.category || 'Menu';
+      return `
+        <div class="bg-brandPaper flex flex-col border-2 border-brandBrown shadow-brutal brutal-card">
+          <div class="p-8 space-y-4">
+            <div class="flex justify-between items-start">
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-${pillColor}"></div>
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-stone-500">${cat}</span>
+              </div>
+              <div class="bg-white px-3 py-1 font-serif font-bold border-2 border-brandBrown shadow-brutal-hover">${priceBadge} ${unit ? `<span class='text-[10px] ml-1'>${unit}</span>` : ''}</div>
+            </div>
+            <h3 class="text-2xl font-serif font-bold uppercase tracking-tighter">${item.name}</h3>
+            ${notes ? `<p class="font-bold text-lg leading-relaxed text-stone-600">${notes}</p>` : ''}
+          </div>
+        </div>`;
+    }
 
     async function loadMenu() {
       try {
-        const res = await fetch(JSON_URL, { cache: "no-store" });
+        const res = await fetch(JSON_URL, { cache: 'no-store' });
         const data = await res.json();
-        const byCat = {};
-        data.forEach(row => {
-          const cat = row["Category"] || "Other";
-          if (!byCat[cat]) byCat[cat] = [];
-          byCat[cat].push({
-            name: row["Item"],
-            unit: row["Unit/Pack"],
-            price: row["Price"],
-            notes: row["Notes"]
-          });
-        });
-
-        const menuEl = document.getElementById("menu");
-        menuEl.innerHTML = "";
-        Object.keys(byCat).sort().forEach(cat => {
-          const block = document.createElement("div");
-          block.className = "category";
-          const h = document.createElement("h3");
-          h.textContent = cat;
-          block.appendChild(h);
-          byCat[cat].forEach(item => {
-            const row = document.createElement("div");
-            row.className = "item";
-            const left = document.createElement("div");
-            left.innerHTML = `<div class="name">${item.name}</div>${item.unit ? `<div class="unit">${item.unit}</div>` : ""}`;
-            const right = document.createElement("div");
-            right.className = "price";
-            right.textContent = item.price || "";
-            row.append(left, right);
-            if (item.notes) {
-              const n = document.createElement("div");
-              n.className = "notes";
-              n.textContent = item.notes;
-              left.appendChild(n);
-            }
-            block.appendChild(row);
-          });
-          menuEl.appendChild(block);
-        });
-      } catch (err) {
-        document.getElementById("menu").textContent = "Could not load menu. Check sheet sharing.";
-        console.error(err);
+        const cards = data.map((row, idx) => createCard({
+          name: row['Item'],
+          unit: row['Unit/Pack'],
+          price: row['Price'],
+          notes: row['Notes'],
+          category: row['Category']
+        }, idx)).join('');
+        menuGrid.innerHTML = cards || '<div class="text-center text-stone-500">Menu coming soon.</div>';
+      } catch (e) {
+        menuGrid.innerHTML = '<div class="text-center text-red-600">Could not load menu. Check sheet sharing.</div>';
+        console.error(e);
       }
     }
+
+    const faqs = [
+      { q: "Lead time", a: "48-hour notice required. We'll confirm exact pickup/delivery time. Good things take time!" },
+      { q: "Pickup & delivery", a: "Within ~20 minutes of Austin Bluffs & Academy in Colorado Springs. We'll coordinate a specific handoff window." },
+      { q: "Deposits", a: "Required on all custom orders and orders over $50 to secure your bake slot." },
+      { q: "Realtor / gifts", a: "Welcome Home and Comfort boxes available; ask for a sample drop to see what we can do." },
+      { q: "Allergens", a: "Please note: This is a cottage kitchen that handles wheat (gluten), dairy, eggs, and tree nuts." }
+    ];
+
+    const faqContainer = document.getElementById('faq-container');
+    faqs.forEach((faq, i) => {
+      const div = document.createElement('div');
+      div.className = 'bg-white border-2 border-brandBrown shadow-brutal';
+      div.innerHTML = `
+        <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none group">
+          <span class="font-serif font-bold text-lg tracking-tight uppercase group-hover:text-brandGold transition-colors">${faq.q}</span>
+          <span class="transform transition-transform duration-300" id="icon-${i}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="max-h-0 overflow-hidden transition-all duration-300 bg-brandPaper" id="ans-${i}">
+          <p class="px-6 py-5 font-bold text-stone-600 border-t-2 border-brandBrown leading-relaxed">${faq.a}</p>
+        </div>`;
+      div.querySelector('button').onclick = () => {
+        const ans = document.getElementById(`ans-${i}`);
+        const icon = document.getElementById(`icon-${i}`);
+        const isOpen = ans.style.maxHeight && ans.style.maxHeight !== '0px';
+        ans.style.maxHeight = isOpen ? '0px' : '200px';
+        icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        faqs.forEach((_, j) => {
+          if (i !== j) {
+            const otherAns = document.getElementById(`ans-${j}`);
+            const otherIcon = document.getElementById(`icon-${j}`);
+            if (otherAns) otherAns.style.maxHeight = '0px';
+            if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+          }
+        });
+      };
+      faqContainer.appendChild(div);
+    });
 
     loadMenu();
   </script>
